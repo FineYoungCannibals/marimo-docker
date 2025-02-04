@@ -1,0 +1,4 @@
+marimo
+marimo[recommended]
+pymongo
+requests
