@@ -4,6 +4,8 @@ services:
       context: .
       dockerfile: Dockerfile
     image: marimo:dev
+    networks:
+      - lab
     ports:
       - "127.0.0.1:2718:2718"
     restart: unless-stopped
@@ -22,3 +24,8 @@ services:
 
 volumes:
   marimo_notebooks:
+
+
+networks:
+  lab:
+    external: true
