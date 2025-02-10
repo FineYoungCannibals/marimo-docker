@@ -1,4 +1,6 @@
 marimo
 marimo[recommended]
+marimo[sql]
+pandas
 pymongo
 requests
