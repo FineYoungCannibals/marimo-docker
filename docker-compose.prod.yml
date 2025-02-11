@@ -9,7 +9,7 @@ services:
       - "127.0.0.1:2718:2718"
     restart: unless-stopped
     volumes:
-      - marimo_notebooks:/home/app_user/notebooks
+      - /opt/docker/marimo/marimo_notebooks:/home/app_user/notebooks
     environment:
       MARIMO_HOST: ${MARIMO_HOST}
       MARIMO_PORT: ${MARIMO_PORT}
