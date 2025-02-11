@@ -1,6 +1,1 @@
-marimo
-marimo[recommended]
-marimo[sql]
-pandas
-pymongo
-requests
+# additional requirements beyond base requirements in the Dockerfile
