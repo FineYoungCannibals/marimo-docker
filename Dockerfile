@@ -12,8 +12,28 @@ RUN chown -R app_user:app_user $VIRTUAL_ENV
 USER app_user
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-COPY --chown=app_user:app_user requirements.txt .
-RUN . $VIRTUAL_ENV/bin/activate && uv pip install -r requirements.txt
+# Copy requirements (it will be used by the entrypoint).
+COPY --chown=app_user:app_user requirements.txt /home/app_user/requirements.txt
+
+# Install standard packages into our image that won't change.
+# We do this for container startup / restart speed
+RUN . $VIRTUAL_ENV/bin/activate && uv pip install \
+    marimo \
+    marimo[recommended] \
+    marimo[sql] \
+    pandas \
+    ppp-connectors \
+    psycopg2-binary \
+    pymongo \
+    pyvis \
+    requests
+
+# Copy the entrypoint script.
+COPY --chown=app_user:app_user entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 WORKDIR /home/app_user/notebooks
 EXPOSE 2718
+
+# Use the entrypoint script to install dependencies at container start.
+ENTRYPOINT ["/entrypoint.sh"]
