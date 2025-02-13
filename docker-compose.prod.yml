@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
     volumes:
       - /opt/docker/marimo/marimo_notebooks:/home/app_user/notebooks
-      - ./.marimo.toml:/home/app_user/.marimo.toml
+      - /opt/docker/marimo/.marimo.toml:/home/app_user/.marimo.toml
     environment:
       MARIMO_HOST: ${MARIMO_HOST}
       MARIMO_PORT: ${MARIMO_PORT}
