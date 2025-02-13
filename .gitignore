@@ -170,3 +170,6 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# user ignores
+.marimo.toml
