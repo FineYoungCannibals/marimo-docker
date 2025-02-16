@@ -1,0 +1,26 @@
+# DEV Environment
+services:
+  marimo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: marimo-docker:dev
+    ports:
+      - "127.0.0.1:2719:2718"
+    restart: unless-stopped
+    volumes:
+      - marimo_notebooks:/home/app_user/notebooks
+      - ./.marimo.toml:/home/app_user/.marimo.toml
+    environment:
+      MARIMO_HOST: ${MARIMO_HOST}
+      MARIMO_PORT: ${MARIMO_PORT}
+      MARIMO_TOKEN_PASSWORD: ${MARIMO_TOKEN_PASSWORD}
+    command: bash -c 'source /home/app_user/venv/bin/activate && marimo edit --headless --token --token-password ${MARIMO_TOKEN_PASSWORD} -p ${MARIMO_PORT} --host ${MARIMO_HOST}'
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:2718/health" ]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+volumes:
+  marimo_notebooks:
