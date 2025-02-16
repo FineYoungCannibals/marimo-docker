@@ -1,0 +1,54 @@
+# 🏠 User config from /home/app_user/.config/marimo/marimo.toml
+[display]
+dataframes = "rich"
+default_width = "medium"
+theme = "light"
+cell_output = "above"
+code_editor_font_size = 14
+
+[ai]
+rules = ""
+
+[ai.anthropic]
+
+[ai.google]
+
+[ai.open_ai]
+
+[keymap]
+preset = "default"
+
+[keymap.overrides]
+
+[formatting]
+line_length = 90
+
+[runtime]
+on_cell_change = "autorun"
+auto_reload = "off"
+auto_instantiate = true
+
+[package_management]
+manager = "uv"
+
+[completion]
+copilot = false
+activate_on_typing = true
+
+[experimental]
+inline_ai_tooltip = false
+chat_sidebar = true
+rtc = false
+
+[snippets]
+custom_paths = []
+include_default_snippets = true
+
+[save]
+format_on_save = false
+autosave = "after_delay"
+autosave_delay = 1000
+
+[server]
+follow_symlink = false
+browser = "default"
