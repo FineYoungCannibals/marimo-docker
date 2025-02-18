@@ -8,7 +8,7 @@ services:
       - lab
     ports:
       - "127.0.0.1:2718:2718"
-    restart: unless-stopped
+    restart: "no"
     volumes:
       - /opt/docker/marimo/marimo_notebooks:/home/app_user/notebooks
       - /opt/docker/marimo/.marimo.toml:/home/app_user/.marimo.toml
