@@ -3,7 +3,11 @@ FROM python:3.13.1-slim
 COPY --from=ghcr.io/astral-sh/uv:0.4.20 /uv /bin/uv
 ENV VIRTUAL_ENV=/home/app_user/venv
 
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+RUN apt update && \
+    apt upgrade -y && \
+    apt install -y curl \
+    iputils-ping && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m app_user
 RUN uv venv $VIRTUAL_ENV
