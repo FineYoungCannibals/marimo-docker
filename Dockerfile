@@ -25,6 +25,7 @@ RUN . $VIRTUAL_ENV/bin/activate && uv pip install -U \
     ppp-connectors \
     psycopg2-binary \
     pymongo \
+    pymysql \
     pyvis \
     requests
 
