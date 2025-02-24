@@ -1,4 +1,6 @@
-# DEV Environment
+####################
+# DEV ENVIRONMENT! #
+####################
 services:
   marimo:
     build:
@@ -9,8 +11,8 @@ services:
       - "127.0.0.1:2719:2718"
     restart: unless-stopped
     volumes:
-      - marimo_notebooks:/home/app_user/notebooks
-      - ./.marimo.toml:/home/app_user/.marimo.toml
+      - ./dev_notebooks:/home/app_user/notebooks # create this dir locally
+      - ./.marimo.toml:/home/app_user/.marimo.toml # copy .marimo.toml.example to .marimo.toml
     environment:
       MARIMO_HOST: ${MARIMO_HOST}
       MARIMO_PORT: ${MARIMO_PORT}
@@ -21,6 +23,16 @@ services:
       interval: 30s
       timeout: 3s
       retries: 3
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # <-- Mount config file
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 volumes:
   marimo_notebooks:
