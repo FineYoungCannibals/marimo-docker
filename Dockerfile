@@ -31,7 +31,8 @@ RUN . $VIRTUAL_ENV/bin/activate && uv pip install -U \
     pymongo \
     pymysql \
     pyvis \
-    requests
+    requests \
+    SQLAlchemy
 
 # Copy the entrypoint script.
 COPY --chown=app_user:app_user entrypoint.sh /entrypoint.sh
