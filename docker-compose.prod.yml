@@ -25,9 +25,9 @@ services:
       # retries: 3
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.wikijs.rule=Host(`marimo.trashcollector.dev`)"
-      - "traefik.http.routers.wikijs.entrypoints=https"
-      - "traefik.http.routers.wikijs.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.marimo.rule=Host(`marimo.trashcollector.dev`)"
+      - "traefik.http.routers.marimo.entrypoints=https"
+      - "traefik.http.routers.marimo.tls.certresolver=letsencrypt"
 
 networks:
   lab:
