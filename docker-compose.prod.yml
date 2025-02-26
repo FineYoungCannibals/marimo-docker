@@ -7,6 +7,7 @@ services:
     networks:
       - lab
     ports:
+      - "127.0.0.1:2718:2718"
       - "100.94.216.28:2718:2718"
     restart: unless-stopped
     volumes:
@@ -17,11 +18,11 @@ services:
       MARIMO_PORT: ${MARIMO_PORT}
       MARIMO_TOKEN_PASSWORD: ${MARIMO_TOKEN_PASSWORD}
     command: bash -c 'source /home/app_user/venv/bin/activate && marimo edit --headless --token --token-password ${MARIMO_TOKEN_PASSWORD} -p ${MARIMO_PORT} --host ${MARIMO_HOST}'
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "https://marimo.trashcollector.dev/health" ]
-      interval: 30s
-      timeout: 3s
-      retries: 3
+    # healthcheck:
+      # test: [ "CMD", "curl", "-f", "https://marimo.trashcollector.dev/health" ]
+      # interval: 30s
+      # timeout: 3s
+      # retries: 3
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.wikijs.rule=Host(`marimo.trashcollector.dev`)"
