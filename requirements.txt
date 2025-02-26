@@ -1,1 +1,5 @@
 # additional requirements beyond base requirements in the Dockerfile
+# Try to force marimo to update every time
+marimo
+marimo[recommended]
+marimo[sql]
