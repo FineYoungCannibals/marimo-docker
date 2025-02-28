@@ -9,7 +9,7 @@ set -e
 # Install or update dependencies at startup.
 if [ -f /home/app_user/requirements.txt ]; then
   echo "Installing/updating Python dependencies..."
-  uv pip install -r /home/app_user/requirements.txt
+  uv pip install -U -r /home/app_user/requirements.txt
 fi
 
 # Execute the main command passed via CMD.
