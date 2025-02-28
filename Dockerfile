@@ -25,6 +25,7 @@ RUN . $VIRTUAL_ENV/bin/activate && uv pip install -U \
     marimo \
     marimo[recommended] \
     marimo[sql] \
+    matplotlib \
     pandas \
     ppp-connectors \
     psycopg2-binary \
