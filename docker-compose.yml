@@ -12,7 +12,6 @@ services:
     restart: unless-stopped
     volumes:
       - ./dev_notebooks:/home/app_user/notebooks # create this dir locally
-      - ./utils:/home/app_user/utils # shared utils
       - ./.marimo.toml:/home/app_user/.marimo.toml # copy .marimo.toml.example to .marimo.toml
     environment:
       MARIMO_HOST: ${MARIMO_HOST}

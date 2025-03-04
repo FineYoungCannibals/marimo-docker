@@ -175,4 +175,3 @@ cython_debug/
 .marimo.toml
 dev_notebooks
 nginx.conf
-utils
