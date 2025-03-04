@@ -16,6 +16,12 @@ RUN chown -R app_user:app_user $VIRTUAL_ENV
 USER app_user
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
+# Ensure directories exist
+RUN mkdir -p /home/app_user/notebooks /home/app_user/utils
+
+# Set PYTHONPATH so Python can find modules in /home/app_user/utils
+ENV PYTHONPATH="/home/app_user/utils:${PYTHONPATH}"
+
 # Copy requirements (it will be used by the entrypoint).
 COPY --chown=app_user:app_user requirements.txt /home/app_user/requirements.txt
 
