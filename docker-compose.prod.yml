@@ -12,6 +12,7 @@ services:
     restart: unless-stopped
     volumes:
       - /opt/docker/marimo/marimo_notebooks:/home/app_user/notebooks
+      - /opt/docker/marimo/utils:/home/app_user/utils
       - /opt/docker/marimo/.marimo.toml:/home/app_user/.marimo.toml
     environment:
       MARIMO_HOST: ${MARIMO_HOST}
@@ -32,4 +33,3 @@ services:
 networks:
   lab:
     external: true
-
