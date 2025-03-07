@@ -29,6 +29,7 @@ COPY --chown=app_user:app_user requirements.txt /home/app_user/requirements.txt
 # Install standard packages into our image that won't change.
 # We do this for container startup / restart speed
 RUN . $VIRTUAL_ENV/bin/activate && uv pip install -U \
+    httpx \
     marimo \
     marimo[recommended] \
     marimo[sql] \
