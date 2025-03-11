@@ -14,9 +14,27 @@ services:
       - /opt/docker/marimo/marimo_notebooks:/home/app_user/notebooks
       - /opt/docker/marimo/.marimo.toml:/home/app_user/.marimo.toml
     environment:
+      ENVIRONMENT: ${ENVIRONMENT}
+      FLASHPOINT_API_KEY: ${FLASHPOINT_API_KEY}
       MARIMO_HOST: ${MARIMO_HOST}
       MARIMO_PORT: ${MARIMO_PORT}
       MARIMO_TOKEN_PASSWORD: ${MARIMO_TOKEN_PASSWORD}
+      MONGO_USER: ${MONGO_USER}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_DATABASE: ${MONGO_DATABASE}
+      MONGO_IPQS_CACHE_COLL: ${MONGO_IPQS_CACHE_COLL}
+      IPQS_API_KEY: ${IPQS_API_KEY}
+      SHOUTRRR_URL: ${SHOUTRRR_URL}
+      SHOUTRRR_API_KEY: ${SHOUTRRR_API_KEY}
+      SHOUTRRR_ALERTING_CHANNEL: ${SHOUTRRR_ALERTING_CHANNEL}
+      SHOUTRRR_RESULTS_CHANNEL: ${SHOUTRRR_RESULTS_CHANNEL}
+      SPYCLOUD_API_ATO_KEY: ${SPYCLOUD_API_ATO_KEY}
+      SPYCLOUD_API_INV_KEY: ${SPYCLOUD_API_INV_KEY}
+      SPYCLOUD_API_SIP_KEY: ${SPYCLOUD_API_SIP_KEY}
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_API_SID: ${TWILIO_API_SID}
+      TWILIO_API_SECRET: ${TWILIO_API_SECRET}
+      URLSCAN_API_KEY: ${URLSCAN_API_KEY}
     command: bash -c 'source /home/app_user/venv/bin/activate && marimo edit --headless --token --token-password ${MARIMO_TOKEN_PASSWORD} -p ${MARIMO_PORT} --host ${MARIMO_HOST}'
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:2718/health" ]
