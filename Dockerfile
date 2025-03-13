@@ -27,7 +27,7 @@ ENV PYTHONPATH="/home/app_user/notebooks/utils:${PYTHONPATH}"
 COPY --chown=app_user:app_user requirements.txt /home/app_user/requirements.txt
 
 # Install standard packages into our image
-RUN . $VIRTUAL_ENV/bin/activate && uv pip install -U -r requirements.txt
+RUN . $VIRTUAL_ENV/bin/activate && uv pip install -U -r /home/app_user/requirements.txt
 
 # Copy the entrypoint script.
 COPY --chown=app_user:app_user entrypoint.sh /entrypoint.sh
