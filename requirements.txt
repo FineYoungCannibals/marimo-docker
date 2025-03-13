@@ -1,5 +1,16 @@
-# additional requirements beyond base requirements in the Dockerfile
-# Try to force marimo to update every time
+httpx
+jq
 marimo
 marimo[recommended]
 marimo[sql]
+matplotlib
+nest_asyncio
+pandas
+plotly
+ppp-connectors
+psycopg2-binary
+pymongo
+pymysql
+pyvis
+requests
+SQLAlchemy

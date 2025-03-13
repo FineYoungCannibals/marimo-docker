@@ -26,23 +26,8 @@ ENV PYTHONPATH="/home/app_user/notebooks/utils:${PYTHONPATH}"
 # Copy requirements (it will be used by the entrypoint).
 COPY --chown=app_user:app_user requirements.txt /home/app_user/requirements.txt
 
-# Install standard packages into our image that won't change.
-# We do this for container startup / restart speed
-RUN . $VIRTUAL_ENV/bin/activate && uv pip install -U \
-    httpx \
-    marimo \
-    marimo[recommended] \
-    marimo[sql] \
-    matplotlib \
-    pandas \
-    plotly \
-    ppp-connectors \
-    psycopg2-binary \
-    pymongo \
-    pymysql \
-    pyvis \
-    requests \
-    SQLAlchemy
+# Install standard packages into our image
+RUN . $VIRTUAL_ENV/bin/activate && uv pip install -U -r requirements.txt
 
 # Copy the entrypoint script.
 COPY --chown=app_user:app_user entrypoint.sh /entrypoint.sh
@@ -51,5 +36,5 @@ RUN chmod +x /entrypoint.sh
 WORKDIR /home/app_user/notebooks
 EXPOSE 2718
 
-# Use the entrypoint script to install dependencies at container start.
+# Use the entrypoint script to update dependencies upon container rebuilds
 ENTRYPOINT ["/entrypoint.sh"]
