@@ -3,7 +3,6 @@ httpx
 jq
 langchain
 langchain-community
-langchain-connectors
 langchain-text-splitters
 marimo
 marimo[recommended]
