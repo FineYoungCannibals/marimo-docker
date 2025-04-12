@@ -5,18 +5,31 @@ services:
   marimo:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     image: marimo-docker:dev
     ports:
-      - "127.0.0.1:2719:2718"
+      - "127.0.0.1:2718:2718"
     restart: unless-stopped
     volumes:
-      - ./dev_notebooks:/home/app_user/notebooks # create this dir locally
-      - ./.marimo.toml:/home/app_user/.marimo.toml # copy .marimo.toml.example to .marimo.toml
+      - ./dev_notebooks:/home/app_user/notebooks
+      - ./utils:/home/app_user/notebooks/utils
+      - ./.marimo.toml:/home/app_user/.marimo.toml
     environment:
+      FLASHPOINT_API_KEY: ${FLASHPOINT_API_KEY}
+      IPQS_API_KEY: ${IPQS_API_KEY}
       MARIMO_HOST: ${MARIMO_HOST}
       MARIMO_PORT: ${MARIMO_PORT}
       MARIMO_TOKEN_PASSWORD: ${MARIMO_TOKEN_PASSWORD}
+      SLYCOOPER_MONGO_URI: ${SLYCOOPER_MONGO_URI}
+      SLYCOOPER_MYSQL_URI: ${SLYCOOPER_MYSQL_URI}
+      CACHEMEOUSSIDE_API_URL: ${CACHEMEOUSSIDE_API_URL}
+      SPYCLOUD_API_ATO_KEY: ${SPYCLOUD_API_ATO_KEY}
+      SPYCLOUD_API_INV_KEY: ${SPYCLOUD_API_INV_KEY}
+      SPYCLOUD_API_SIP_KEY: ${SPYCLOUD_API_SIP_KEY}
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_API_SID: ${TWILIO_API_SID}
+      TWILIO_API_SECRET: ${TWILIO_API_SECRET}
+      URLSCAN_API_KEY: ${URLSCAN_API_KEY}
     command: bash -c 'source /home/app_user/venv/bin/activate && marimo edit --headless --token --token-password ${MARIMO_TOKEN_PASSWORD} -p ${MARIMO_PORT} --host ${MARIMO_HOST}'
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:2718/health" ]
@@ -33,6 +46,3 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro # <-- Mount config file
     extra_hosts:
       - "host.docker.internal:host-gateway"
-
-volumes:
-  marimo_notebooks:
