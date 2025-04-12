@@ -2,7 +2,7 @@ services:
   marimo:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     pull_policy: build
     networks:
       - lab
@@ -11,25 +11,17 @@ services:
       - "100.94.216.28:2718:2718"
     restart: unless-stopped
     volumes:
-      - /opt/docker/marimo/marimo_notebooks:/home/app_user/notebooks
+      - marimo_notebooks:/home/app_user/notebooks
       - /opt/docker/marimo/.marimo.toml:/home/app_user/.marimo.toml
     environment:
-      ENVIRONMENT: ${ENVIRONMENT}
       FLASHPOINT_API_KEY: ${FLASHPOINT_API_KEY}
+      IPQS_API_KEY: ${IPQS_API_KEY}
       MARIMO_HOST: ${MARIMO_HOST}
       MARIMO_PORT: ${MARIMO_PORT}
       MARIMO_TOKEN_PASSWORD: ${MARIMO_TOKEN_PASSWORD}
-      MONGO_USER: ${MONGO_USER}
-      MONGO_PASSWORD: ${MONGO_PASSWORD}
-      MONGO_DATABASE: ${MONGO_DATABASE}
-      MONGO_IPQS_CACHE_COLL: ${MONGO_IPQS_CACHE_COLL}
-      IPQS_API_KEY: ${IPQS_API_KEY}
-      SHOUTRRR_URL: ${SHOUTRRR_URL}
-      SHOUTRRR_API_KEY: ${SHOUTRRR_API_KEY}
-      SHOUTRRR_ALERTING_CHANNEL: ${SHOUTRRR_ALERTING_CHANNEL}
-      SHOUTRRR_RESULTS_CHANNEL: ${SHOUTRRR_RESULTS_CHANNEL}
       SLYCOOPER_MONGO_URI: ${SLYCOOPER_MONGO_URI}
       SLYCOOPER_MYSQL_URI: ${SLYCOOPER_MYSQL_URI}
+      CACHEMEOUSSIDE_API_URL: ${CACHEMEOUSSIDE_API_URL}
       SPYCLOUD_API_ATO_KEY: ${SPYCLOUD_API_ATO_KEY}
       SPYCLOUD_API_INV_KEY: ${SPYCLOUD_API_INV_KEY}
       SPYCLOUD_API_SIP_KEY: ${SPYCLOUD_API_SIP_KEY}
@@ -52,3 +44,6 @@ services:
 networks:
   lab:
     external: true
+
+volumes:
+  marimo_notebooks:
