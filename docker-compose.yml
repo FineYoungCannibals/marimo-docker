@@ -16,6 +16,7 @@ services:
       - ./.marimo.toml:/home/app_user/.marimo.toml
     environment:
       FLASHPOINT_API_KEY: ${FLASHPOINT_API_KEY}
+      HUGGINGFACE_TOKEN: ${HUGGINGFACE_TOKEN}
       IPQS_API_KEY: ${IPQS_API_KEY}
       MARIMO_HOST: ${MARIMO_HOST}
       MARIMO_PORT: ${MARIMO_PORT}
