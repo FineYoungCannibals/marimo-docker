@@ -7,7 +7,6 @@ services:
       - lab_swarm
     ports:
       - "100.94.216.28:2718:2718"
-    restart: unless-stopped
     volumes:
       - marimo_notebooks:/home/app_user/notebooks
       - /opt/docker/marimo/.marimo.toml:/home/app_user/.marimo.toml
