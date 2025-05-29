@@ -4,9 +4,8 @@ services:
       context: .
       dockerfile: Dockerfile.prod
     networks:
-      - lab
+      - lab_swarm
     ports:
-      - "127.0.0.1:2718:2718"
       - "100.94.216.28:2718:2718"
     restart: unless-stopped
     volumes:
@@ -42,7 +41,7 @@ services:
       - "traefik.http.routers.marimo.tls.certresolver=letsencrypt"
 
 networks:
-  lab:
+  lab_swarm:
     external: true
 
 volumes:
