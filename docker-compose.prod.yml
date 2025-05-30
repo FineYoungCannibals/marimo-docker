@@ -1,15 +1,11 @@
 services:
   marimo:
-    build:
-      context: .
-      dockerfile: Dockerfile.prod
     networks:
       - lab_swarm
     ports:
-      - "100.94.216.28:2718:2718"
+      - "2718:2718"
     volumes:
-      - marimo_notebooks:/home/app_user/notebooks
-      - /opt/docker/marimo/.marimo.toml:/home/app_user/.marimo.toml
+      - marimo_data:/home/app_user/notebooks
     environment:
       FLASHPOINT_API_KEY: ${FLASHPOINT_API_KEY}
       HUGGINGFACE_TOKEN: ${HUGGINGFACE_TOKEN}
@@ -44,4 +40,5 @@ networks:
     external: true
 
 volumes:
-  marimo_notebooks:
+  marimo_data:
+    external: true
