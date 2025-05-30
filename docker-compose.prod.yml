@@ -1,5 +1,6 @@
 services:
   marimo:
+    image: ghcr.io/fineyoungcannibals/marimo-docker:latest
     networks:
       - lab_swarm
     ports:
