@@ -35,4 +35,6 @@ jobs:
           context: .
           file: Dockerfile.prod
           push: true
+          cache-from: type=gha
+          cache-to: type=gha, mode=max
           tags: ${{ env.IMAGE_TAG }}
