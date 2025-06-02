@@ -38,8 +38,6 @@ services:
       - "traefik.http.routers.marimo.tls.certresolver=letsencrypt"
       - "traefik.http.services.marimo.loadbalancer.server.port=2718"
       - "traefik.docker.network=lab_swarm"
-    restart_policy:
-      condition: any
 
 networks:
   lab_swarm:
