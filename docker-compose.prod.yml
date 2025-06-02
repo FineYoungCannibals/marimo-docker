@@ -30,6 +30,7 @@ services:
       interval: 30s
       timeout: 3s
       retries: 3
+  deploy:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.marimo.rule=Host(`marimo.trashcollector.dev`)"
@@ -37,6 +38,8 @@ services:
       - "traefik.http.routers.marimo.tls.certresolver=letsencrypt"
       - "traefik.http.services.marimo.loadbalancer.server.port=2718"
       - "traefik.docker.network=lab_swarm"
+    restart_policy:
+      condition: any
 
 networks:
   lab_swarm:
