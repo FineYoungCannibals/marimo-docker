@@ -42,6 +42,8 @@ COPY --chown=app_user:app_user utils /home/app_user/notebooks/utils
 COPY --chown=app_user:app_user entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+RUN chown -R app_user:app_user /home/app_user
+
 # Expose port and set entrypoint
 EXPOSE 2718
 ENTRYPOINT ["/entrypoint.sh"]
