@@ -34,7 +34,8 @@ RUN uv pip install --no-cache-dir -U -r /tmp/requirements.txt && \
 RUN rm -rf ~/.cache/pip ~/.cache/uv /tmp/* /root/.cache
 
 # Create working directories and set permissions
-USER app_user
+RUN mkdir -p /home/app_user/notebooks && \
+    chown -R app_user:app_user /home/app_user
 WORKDIR /home/app_user/notebooks
 RUN chown -R app_user:app_user /home/app_user
 RUN mkdir -p /home/app_user/notebooks/utils && \
@@ -44,6 +45,8 @@ RUN mkdir -p /home/app_user/notebooks/utils && \
 COPY --chown=app_user:app_user utils /home/app_user/notebooks/utils
 COPY --chown=app_user:app_user entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
+USER app_user
 
 # Expose port and set entrypoint
 EXPOSE 2718
