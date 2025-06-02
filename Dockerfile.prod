@@ -30,19 +30,17 @@ COPY requirements.txt /tmp/requirements.txt
 RUN uv pip install --no-cache-dir -U -r /tmp/requirements.txt && \
     rm /tmp/requirements.txt
 
-# Remove bloat
-RUN rm -rf ~/.cache/pip ~/.cache/uv /tmp/* /root/.cache
-
-# Directories, code, and permissions
+# Create working directories and set permissions
+USER app_user
 WORKDIR /home/app_user/notebooks
+
 RUN mkdir -p /home/app_user/notebooks/utils && \
     touch /home/app_user/.marimo_toml
+
+# Copy app code and entrypoint
 COPY --chown=app_user:app_user utils /home/app_user/notebooks/utils
 COPY --chown=app_user:app_user entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-RUN chown -R app_user:app_user /home/app_user
-
-USER app_user
 
 # Expose port and set entrypoint
 EXPOSE 2718
