@@ -18,6 +18,5 @@ pymongo
 pymysql
 pyvis
 requests
-sentence-transformers
 SQLAlchemy
 tabulate
