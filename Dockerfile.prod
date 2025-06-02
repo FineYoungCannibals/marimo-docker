@@ -37,7 +37,6 @@ RUN rm -rf ~/.cache/pip ~/.cache/uv /tmp/* /root/.cache
 RUN mkdir -p /home/app_user/notebooks && \
     chown -R app_user:app_user /home/app_user
 WORKDIR /home/app_user/notebooks
-RUN chown -R app_user:app_user /home/app_user
 RUN mkdir -p /home/app_user/notebooks/utils && \
     touch /home/app_user/.marimo_toml
 
