@@ -12,11 +12,14 @@ ENV VIRTUAL_ENV=/home/app_user/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 ENV PYTHONUNBUFFERED=1
 
+# Set PYTHONPATH so Python can find modules in /home/app_user/utils
+ENV PYTHONPATH="/home/app_user/notebooks/utils:${PYTHONPATH}"
+
 # System deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     iputils-ping \
- && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 # Create user
 RUN useradd -m app_user
